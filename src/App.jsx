@@ -174,7 +174,7 @@ function App(props) {
   //render
   return (
     <div className="todoapp stack-large">
-      <h1>ParentPal</h1>
+      <h1>SlopeSnap</h1>
       <Form addTask={addTask} geoFindMe={geoFindMe} />
       <div className="filters btn-group stack-exception">{filterList}</div>
       <h2 id="list-heading">{headingText}</h2>
