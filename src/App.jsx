@@ -141,23 +141,27 @@ function App(props) {
   }
 
   const taskList = tasks
-    .filter(FILTER_MAP[filter])
-    .map((task) => (
+  .filter(FILTER_MAP[filter])
+  .map((task) => (
+    <div className="task-box" key={task.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+      <h3>{task.name}</h3>
+      <MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />
       <Todo
         id={task.id}
         name={task.name}
         completed={task.completed}
-        key={task.id}
         latitude={task.location.latitude}
         longitude={task.location.longitude}
         city={task.location.city}
-        mapLink={<MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />}
         toggleTaskCompleted={toggleTaskCompleted}
         photoedTask={photoedTask}
         deleteTask={deleteTask}
         editTask={editTask}
       />
-    ));
+    </div>
+  ));
+
+    
 
   const filterList = FILTER_NAMES.map((name) => (
     <FilterButton
