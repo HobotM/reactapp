@@ -3,6 +3,8 @@ import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
+import MapboxMap from "./components/MapboxMap";
+
 
 const FILTER_MAP = {
   All: () => true,
@@ -149,9 +151,7 @@ function App(props) {
         latitude={task.location.latitude}
         longitude={task.location.longitude}
         city={task.location.city}
-        mapLink={`https://www.openstreetmap.org/#map=18/${
-          task.location?.latitude ?? ""
-        }/${task.location?.longitude ?? ""}`}
+        mapLink={<MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />}
         toggleTaskCompleted={toggleTaskCompleted}
         photoedTask={photoedTask}
         deleteTask={deleteTask}
