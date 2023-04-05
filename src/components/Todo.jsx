@@ -66,9 +66,6 @@ const WebcamCapture = (props) => {
   );
 };
 
-
-
-
 const ViewPhoto = (props) => {
   const photoSrc = GetPhotoSrc(props.id);
   return (
@@ -88,12 +85,14 @@ export default function Todo(props) {
   function handleChange(e) {
     setNewName(e.target.value);
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     props.editTask(props.id, newName);
     setNewName("");
     setEditing(false);
   }
+
   function handleToggleDetails() {
     setIsExpanded(!isExpanded);
   }
@@ -120,7 +119,6 @@ export default function Todo(props) {
         >
           Cancel<span className="visually-hidden">renaming {props.name}</span>
         </button>
-
         <button type="submit" className="btn btn__primary todo-edit">
           Save
           <span className="visually-hidden">new name for {props.name}</span>
@@ -139,8 +137,8 @@ export default function Todo(props) {
           onChange={() => props.toggleTaskCompleted(props.id)}
         />
         <label className="todo-label" htmlFor={props.id}>
-          {props.name}
-          from {props.city}| la {props.latitude}| lo {props.longitude}
+          {props.name} from {props.city} | la {props.latitude} | lo{" "}
+          {props.longitude}
         </label>
         <a href={props.mapLink}>Map</a>
       </div>
@@ -151,7 +149,7 @@ export default function Todo(props) {
         <Popup
           trigger={
             <button type="button" className="btn">
-              Selfie!
+              Capture
             </button>
           }
           modal
