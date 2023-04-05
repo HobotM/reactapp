@@ -5,83 +5,63 @@ import Webcam from "react-webcam";
 import { addPhoto, GetPhotoSrc } from "../db.jsx";
 
 const WebcamCapture = (props) => {
+  const [imgSrc, setImgSrc] = useState(null);
+  const [facingMode, setFacingMode] = useState("user");
   const webcamRef = React.useRef(null);
-  const [imgSrc, setImgSrc] = React.useState(null);
-  const [ImgId, setImgId] = React.useState(null);
-  const [PhotoSave, setPhotoSave] = React.useState(false);
-  const [facingMode, setFacingMode] = React.useState("environment");
 
-  useEffect(() => {
-    if (PhotoSave) {
-      props.photoedTask(ImgId);
-      setPhotoSave(false);
-    }
-  });
-
-  const capture = React.useCallback(
-    (id) => {
-      const ImageSrc = webcamRef.current.getScreenshot();
-      setImgSrc(ImageSrc);
-    },
-    [webcamRef, setImgSrc]
-  );
-  const SavePhoto = (id, imgSrc) => {
-    addPhoto(id, imgSrc);
-    setImgId(id);
-    setPhotoSave(true);
+  const capture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImgSrc(imageSrc);
   };
-  const cancelPhoto = (id, imgSrc) => {};
 
-  const toggleCamera = () => {
-    setFacingMode((prevState) =>
-      prevState === "environment" ? "user" : "environment"
-    );
+  const savePhoto = () => {
+    if (imgSrc) {
+      addPhoto(props.id, imgSrc);
+      props.photoedTask(props.id);
+      props.close();
+    }
+  };
+
+  const cancelPhoto = () => {
+    setImgSrc(null);
+  };
+
+  const swapCamera = () => {
+    setFacingMode((prev) => (prev === "user" ? "environment" : "user"));
   };
 
   return (
-    <>
+    <div>
       {!imgSrc && (
         <Webcam
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          facingMode={facingMode}
+          videoConstraints={{ facingMode: facingMode }}
         />
       )}
       {imgSrc && <img src={imgSrc} />}
       <div className="btn-group">
         {!imgSrc && (
-          <button
-            type="button"
-            className="btn"
-            onClick={() => capture(props.id)}
-          >
+          <button type="button" className="btn" onClick={capture}>
             Capture Photo
           </button>
         )}
         {imgSrc && (
-          <button
-            type="button"
-            className="btn"
-            onClick={() => SavePhoto(props.id, imgSrc)}
-          >
+          <button type="button" className="btn" onClick={savePhoto}>
             Save Photo
           </button>
         )}
+        <button type="button" className="btn" onClick={cancelPhoto}>
+          Cancel
+        </button>
         {!imgSrc && (
-          <button type="button" className="btn" onClick={toggleCamera}>
+          <button type="button" className="btn" onClick={swapCamera}>
             Swap Camera
           </button>
         )}
-        <button
-          type="button"
-          className="btn"
-          onClick={() => cancelPhoto(props.id, imgSrc)}
-        >
-          Cancel
-        </button>
       </div>
-    </>
+    </div>
   );
 };
 
