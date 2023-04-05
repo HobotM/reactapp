@@ -22,10 +22,6 @@ const WebcamCapture = (props) => {
     }
   };
 
-  const cancelPhoto = () => {
-    setImgSrc(null);
-  };
-
   const swapCamera = () => {
     setFacingMode((prev) => (prev === "user" ? "environment" : "user"));
   };
@@ -53,9 +49,6 @@ const WebcamCapture = (props) => {
             Save Photo
           </button>
         )}
-        <button type="button" className="btn" onClick={cancelPhoto}>
-          Cancel
-        </button>
         {!imgSrc && (
           <button type="button" className="btn" onClick={swapCamera}>
             Swap Camera
