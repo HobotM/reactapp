@@ -4,7 +4,6 @@ import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
 import { addPhoto, GetPhotoSrc } from "../db.jsx";
 
-
 const WebcamCapture = (props) => {
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
@@ -35,7 +34,12 @@ const WebcamCapture = (props) => {
   return (
     <>
       {!imgSrc && (
-        <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          facingMode="environment"
+        />
       )}
       {imgSrc && <img src={imgSrc} />}
       <div className="btn-group">
@@ -68,6 +72,7 @@ const WebcamCapture = (props) => {
     </>
   );
 };
+
 
 const ViewPhoto = (props) => {
   const photoSrc = GetPhotoSrc(props.id);
