@@ -103,9 +103,16 @@ function App(props) {
   }
 
   function deleteTask(id) {
-    const remainingTasks = tasks.filter((task) => id !== task.id);
+    const remainingTasks = tasks.filter((task) => task.id !== id);
     setTasks(remainingTasks);
+  
+    // Delete the photo associated with the task
+    db.photos
+      .delete(id)
+      .then(() => console.log(`Photo with id ${id} deleted`))
+      .catch((error) => console.log('Failed to delete photo', error));
   }
+  
 
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
