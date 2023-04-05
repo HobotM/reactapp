@@ -286,4 +286,9 @@ body {
 .c-cb > input[type="checkbox"]:checked + label::after {
   opacity: 1;
 }
+.webcam-preview {
+  width: 100%; /* Set the width to 100% of its container */
+  object-fit: contain; /* Ensure the video maintains its aspect ratio */
+  max-height: 80vh; /* Limit the height to 80% of the viewport height */
+}
 

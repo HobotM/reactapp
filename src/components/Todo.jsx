@@ -38,6 +38,7 @@ const WebcamCapture = (props) => {
           ref={webcamRef}
           screenshotFormat="image/jpeg"
           videoConstraints={{ facingMode: facingMode }}
+          className="webcam-preview"
         />
       )}
       {imgSrc && <img src={imgSrc} />}
@@ -64,6 +65,7 @@ const WebcamCapture = (props) => {
     </div>
   );
 };
+
 
 
 
