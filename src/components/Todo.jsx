@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
-import { addPhoto, GetPhotoSrc } from "../db.jsx";
+import { addPhoto, GetPhotoSrc, deletePhoto } from "../db.jsx";
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);

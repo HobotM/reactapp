@@ -1,6 +1,7 @@
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
+import { GetPhotoSrc, deletePhoto } from "./db";
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
