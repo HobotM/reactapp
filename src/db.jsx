@@ -21,6 +21,14 @@ console.log("failed to add pic")
     </p>
     </>
 };
+async function deletePhoto(id) {
+    try {
+      await db.photos.delete(id);
+    } catch (error) {
+      console.log("Failed to delete photo");
+    }
+  }
+  
 
 function GetPhotoSrc(id) {
     const img = useLiveQuery(() => db.photos.where('id').equals(id).toArray());
@@ -29,4 +37,4 @@ function GetPhotoSrc(id) {
     }
   };
   
-  export { addPhoto, GetPhotoSrc };
+  export { addPhoto, GetPhotoSrc, deletePhoto };

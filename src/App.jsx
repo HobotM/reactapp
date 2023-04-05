@@ -102,17 +102,20 @@ function App(props) {
     setTasks(updatedTasks);
   }
 
-  function deleteTask(id) {
-    const remainingTasks = tasks.filter((task) => task.id !== id);
-    setTasks(remainingTasks);
+
+  async function deleteTask(id) {
+    const confirmed = window.confirm("Do you want to delete this task?");
+    if (confirmed) {
+      setTasks(tasks.filter((task) => task.id !== id));
   
-    // Delete the photo associated with the task
-    db.photos
-      .delete(id)
-      .then(() => console.log(`Photo with id ${id} deleted`))
-      .catch((error) => console.log('Failed to delete photo', error));
+      // Check if there is an associated photo
+      const photoSrc = await GetPhotoSrc(id);
+      if (photoSrc) {
+        // If there is a photo, delete it
+        deletePhoto(id);
+      }
+    }
   }
-  
 
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
