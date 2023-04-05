@@ -147,10 +147,17 @@ export default function Todo(props) {
           }
           modal
         >
-          <div>
-            <WebcamCapture id={props.id} photoedTask={props.photoedTask} />
-          </div>
+          {(close) => (
+            <div>
+              <WebcamCapture
+                id={props.id}
+                photoedTask={props.photoedTask}
+                close={close}
+              />
+            </div>
+          )}
         </Popup>
+
         <Popup
           trigger={
             <button type="button" className="btn">
