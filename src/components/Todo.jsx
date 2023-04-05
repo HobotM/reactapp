@@ -9,6 +9,7 @@ const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = React.useState(null);
   const [ImgId, setImgId] = React.useState(null);
   const [PhotoSave, setPhotoSave] = React.useState(false);
+  const [facingMode, setFacingMode] = React.useState("environment");
 
   useEffect(() => {
     if (PhotoSave) {
@@ -31,6 +32,12 @@ const WebcamCapture = (props) => {
   };
   const cancelPhoto = (id, imgSrc) => {};
 
+  const toggleCamera = () => {
+    setFacingMode((prevState) =>
+      prevState === "environment" ? "user" : "environment"
+    );
+  };
+
   return (
     <>
       {!imgSrc && (
@@ -38,7 +45,7 @@ const WebcamCapture = (props) => {
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          facingMode="environment"
+          facingMode={facingMode}
         />
       )}
       {imgSrc && <img src={imgSrc} />}
@@ -61,6 +68,11 @@ const WebcamCapture = (props) => {
             Save Photo
           </button>
         )}
+        {!imgSrc && (
+          <button type="button" className="btn" onClick={toggleCamera}>
+            Swap Camera
+          </button>
+        )}
         <button
           type="button"
           className="btn"
@@ -72,6 +84,7 @@ const WebcamCapture = (props) => {
     </>
   );
 };
+
 
 
 const ViewPhoto = (props) => {
