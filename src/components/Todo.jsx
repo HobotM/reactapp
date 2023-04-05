@@ -3,7 +3,6 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
 import { addPhoto, GetPhotoSrc } from "../db.jsx";
-import MapView, { Marker } from 'react-native-maps';
 
 
 const WebcamCapture = (props) => {
@@ -128,28 +127,6 @@ export default function Todo(props) {
         </button>
       </div>
     </form>
-  );
-
-  
-  const mapView = (
-    <MapView
-      style={{ flex: 1, width: "100%", height: 200 }}
-      region={{
-        latitude: parseFloat(props.latitude),
-        longitude: parseFloat(props.longitude),
-        latitudeDelta: 0.009,
-        longitudeDelta: 0.009,
-      }}
-      showsUserLocation={true}
-    >
-      <Marker
-        coordinate={{
-          latitude: parseFloat(props.latitude),
-          longitude: parseFloat(props.longitude),
-        }}
-        title={props.name}
-      />
-    </MapView>
   );
 
   const viewTemplate = (
