@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 
+const slopesInScotland = [
+  "Glenshee",
+  "CairnGorm Mountain",
+  "The Lecht",
+  "Glencoe Mountain",
+  "Nevis Range",
+  "Other",
+];
+
 function Form(props) {
   const [addition, setAddition] = useState(false);
   const [name, setName] = useState("");
 
   useEffect(() => {
-    if (addition){
+    if (addition) {
       props.geoFindMe();
       setAddition(false);
     }
@@ -21,6 +30,7 @@ function Form(props) {
     props.addTask(name);
     setName("");
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
@@ -28,16 +38,17 @@ function Form(props) {
           What are the slope conditions?
         </label>
       </h2>
-      <input
-        type="text"
-        id="new-todo-input"
-        className="input input__lg"
-        name="text"
-        autoComplete="off"
-        value={name}
-        onChange={handleChange}
-        required
-      />
+      <label htmlFor="slope">
+        Choose a slope:
+        <select id="slope" name="slope" value={name} onChange={handleChange} required>
+          <option value="">--Select a slope--</option>
+          {slopesInScotland.map((slope) => (
+            <option key={slope} value={slope}>
+              {slope}
+            </option>
+          ))}
+        </select>
+      </label>
       <button type="submit" className="btn btn__primary btn__lg">
         Add
       </button>
