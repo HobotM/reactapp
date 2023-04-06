@@ -23,7 +23,7 @@ console.log("failed to add pic")
 };
  function deletePhoto(id) {
     try {
-       db.photos.delete(id);
+       db.photos.delete('id').equals(id).delete();
     } catch (error) {
       console.log("Failed to delete photo");
     }

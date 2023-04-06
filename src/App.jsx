@@ -107,16 +107,11 @@ function App(props) {
   function deleteTask(id) {
     const confirmed = window.confirm("Do you want to delete this task?");
     if (confirmed) {
-      setTasks(tasks.filter((task) => task.id !== id));
-  
-      // Check if there is an associated photo
-      const photoSrc = GetPhotoSrc(id);
-      if (photoSrc) {
-        // If there is a photo, delete it
-        deletePhoto(id);
+      setTasks(tasks.filter((task) => id !== task.id ));
+      deletePhoto(id);
       }
     }
-  }
+  
 
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
