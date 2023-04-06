@@ -21,13 +21,13 @@ console.log("failed to add pic")
     </p>
     </>
 };
- function deletePhoto(id) {
-    try {
-       db.photos.delete('id').equals(id).delete();
-    } catch (error) {
-      console.log("Failed to delete photo");
-    }
+async function deletePhoto(id) {
+  try {
+    await db.photos.delete(id);
+  } catch (error) {
+    console.log("Failed to delete photo");
   }
+}
   
 
 function GetPhotoSrc(id) {
