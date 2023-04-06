@@ -104,13 +104,13 @@ function App(props) {
   }
 
 
-  async function deleteTask(id) {
+  function deleteTask(id) {
     const confirmed = window.confirm("Do you want to delete this task?");
     if (confirmed) {
       setTasks(tasks.filter((task) => task.id !== id));
   
       // Check if there is an associated photo
-      const photoSrc = await GetPhotoSrc(id);
+      const photoSrc = GetPhotoSrc(id);
       if (photoSrc) {
         // If there is a photo, delete it
         deletePhoto(id);

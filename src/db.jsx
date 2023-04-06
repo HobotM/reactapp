@@ -21,9 +21,9 @@ console.log("failed to add pic")
     </p>
     </>
 };
-async function deletePhoto(id) {
+ function deletePhoto(id) {
     try {
-      await db.photos.delete(id);
+       db.photos.delete(id);
     } catch (error) {
       console.log("Failed to delete photo");
     }
