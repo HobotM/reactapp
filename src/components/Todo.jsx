@@ -3,7 +3,6 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
 import { addPhoto, GetPhotoSrc, deletePhoto } from "../db.jsx";
-import WeatherInfo from "../Weather.jsx";
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -213,7 +212,6 @@ export default function Todo(props) {
           />
           <label className="todo-label" htmlFor={props.id}>
             {props.name}
-            <WeatherInfo latitude={props.latitude} longitude={props.longitude} />
           </label>
         </div>
       )}
