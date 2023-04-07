@@ -4,13 +4,14 @@ import axios from "axios";
 const WeatherInfo = ({ latitude, longitude }) => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
   useEffect(() => {
     async function fetchWeather() {
       try {
         // Get the location ID from MetaWeather
         const locationResponse = await axios.get(
-          `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`
+          `${proxyUrl}https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`
         );
 
         if (locationResponse.data && locationResponse.data.length > 0) {
@@ -18,7 +19,7 @@ const WeatherInfo = ({ latitude, longitude }) => {
 
           // Get the weather data using the location ID
           const weatherResponse = await axios.get(
-            `https://www.metaweather.com/api/location/${locationId}/`
+            `${proxyUrl}https://www.metaweather.com/api/location/${locationId}/`
           );
 
           setWeather(weatherResponse.data);
