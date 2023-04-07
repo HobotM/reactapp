@@ -63,6 +63,7 @@ const WebcamCapture = (props) => {
   );
 };
 
+
 const ViewPhoto = (props) => {
   const photoSrc = GetPhotoSrc(props.id);
   return (
@@ -80,6 +81,7 @@ export default function Todo(props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
 
+ 
   useEffect(() => {
     async function fetchImage() {
       const image = await GetPhotoSrc(props.id);
@@ -162,10 +164,10 @@ export default function Todo(props) {
           {(close) => (
             <div>
               <WebcamCapture
-                id={props.id}
-                photoedTask={props.photoedTask}
-                close={close}
-                setImgSrc={setImgSrc}
+               id={props.id}
+               photoedTask={props.photoedTask}
+               close={close}
+               setImgSrc={setImgSrc}
               />
             </div>
           )}
@@ -184,7 +186,7 @@ export default function Todo(props) {
             </div>
           </Popup>
         )}
-
+       
         <button
           type="button"
           className="btn btn__danger"
