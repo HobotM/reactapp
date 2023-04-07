@@ -164,9 +164,10 @@ export default function Todo(props) {
           {(close) => (
             <div>
               <WebcamCapture
-                id={props.id}
-                photoedTask={props.photoedTask}
-                close={close}
+               id={props.id}
+               photoedTask={props.photoedTask}
+               close={close}
+               setImgSrc={setImgSrc}
               />
             </div>
           )}
