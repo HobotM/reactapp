@@ -110,7 +110,6 @@ export default function Todo(props) {
         <label className="todo-label" htmlFor={props.id}>
           New name for {props.name}
         </label>
-        <WeatherInfo latitude={props.latitude} longitude={props.longitude} />
         <input
           id={props.id}
           className="todo-text"
@@ -214,6 +213,7 @@ export default function Todo(props) {
           />
           <label className="todo-label" htmlFor={props.id}>
             {props.name}
+            <WeatherInfo latitude={props.latitude} longitude={props.longitude} />
           </label>
         </div>
       )}
