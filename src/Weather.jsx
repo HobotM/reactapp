@@ -8,7 +8,7 @@ const WeatherInfo = ({ latitude, longitude }) => {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,alerts&units=metric&appid=394d1b7d66b7971d1c01ab62d5fdb1fe`
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,alerts&units=metric&appid=238c4194603d50ed5424c5e17c0eacea`
         );
         setWeatherData(response.data);
       } catch (error) {
