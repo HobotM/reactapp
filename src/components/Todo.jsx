@@ -21,6 +21,7 @@ const WebcamCapture = (props) => {
       // Add the new photo
       await addPhoto(props.id, imgSrc);
       props.photoedTask(props.id);
+      props.setImgSrc(imgSrc); // Pass the new image source to the parent Todo component
       props.close();
     }
   };
@@ -80,6 +81,7 @@ export default function Todo(props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
 
+ 
   useEffect(() => {
     async function fetchImage() {
       const image = await GetPhotoSrc(props.id);
