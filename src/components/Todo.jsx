@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
-import { addPhoto, GetPhotoSrc, deletePhoto } from "../db.jsx";
+import { addPhoto, usePhotoSrc, deletePhoto } from "../db.jsx";
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -77,7 +77,7 @@ export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
-  const [imgSrc, setImgSrc] = useState(null);
+  const imgSrc = usePhotoSrc(props.id);
 
   useEffect(() => {
     async function fetchImage() {
