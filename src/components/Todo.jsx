@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
-import { addPhoto, usePhotoSrc, deletePhoto } from "../db.jsx";
+import { addPhoto, GetPhotoSrc, deletePhoto } from "../db.jsx";
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);
   const [facingMode, setFacingMode] = useState("user");
-  const webcamRef = React.useRef(null);
+  const webcamRef = useRef(null);
 
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -77,7 +77,7 @@ export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
-  const imgSrc = usePhotoSrc(props.id);
+  const [imgSrc, setImgSrc] = useState(null);
 
   useEffect(() => {
     async function fetchImage() {
@@ -164,11 +164,12 @@ export default function Todo(props) {
                 id={props.id}
                 photoedTask={props.photoedTask}
                 close={close}
-                setImgSrc={setImgSrc}
+                setImgSrc={setImgSrc} // Pass the setImgSrc function as a prop
               />
             </div>
           )}
         </Popup>
+
         {imgSrc && (
           <Popup
             trigger={
