@@ -2,37 +2,44 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const WeatherInfo = ({ latitude, longitude }) => {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const API_KEY = "0bb5173502f54f5a0f4f4e2dedb2998a";
 
   useEffect(() => {
-    const fetchWeatherData = async () => {
+    async function fetchWeather() {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,alerts&units=metric&appid=238c4194603d50ed5424c5e17c0eacea`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
         );
-        setWeatherData(response.data);
+        setWeather(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching weather data:", error);
+        console.error("Error fetching weather data: ", error);
+        setLoading(false);
       }
-    };
+    }
+    fetchWeather();
+  }, [latitude, longitude, API_KEY]);
 
-    fetchWeatherData();
-  }, [latitude, longitude]);
-
-  if (!weatherData) {
-    return <div>Loading..1.</div>;
+  if (loading) {
+    return <span>Loading...</span>;
   }
 
-  const snow = weatherData.current.snow
-    ? weatherData.current.snow["1h"]
-    : "No snow";
-  const temperature = weatherData.current.temp;
+  if (!weather) {
+    return <span>Error fetching weather data</span>;
+  }
+
+  const { main, weather: weatherConditions } = weather;
+  const temperature = main.temp.toFixed(1);
+  const iconCode = weatherConditions[0].icon;
+  const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
   return (
-    <div>
-      <div>Snow conditions: {snow}</div>
-      <div>Temperature: {temperature} °C</div>
-    </div>
+    <>
+      <img src={iconUrl} alt="Weather icon" />
+      <span>{temperature}°C</span>
+    </>
   );
 };
 
