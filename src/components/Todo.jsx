@@ -78,6 +78,15 @@ export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imgSrc, setImgSrc] = useState(null);
+
+  useEffect(() => {
+    async function fetchImage() {
+      const image = await GetPhotoSrc(props.id);
+      setImgSrc(image);
+    }
+    fetchImage();
+  }, [props.id]);
 
   function handleChange(e) {
     setNewName(e.target.value);
@@ -137,7 +146,6 @@ export default function Todo(props) {
           {props.name} from {props.city} | la {props.latitude} | lo{" "}
           {props.longitude}
         </label>
-        <a href={props.mapLink}>Map</a>
       </div>
       <div className="btn-group">
         <button type="button" className="btn" onClick={() => setEditing(true)}>
@@ -161,19 +169,21 @@ export default function Todo(props) {
             </div>
           )}
         </Popup>
-
-        <Popup
-          trigger={
-            <button type="button" className="btn">
-              View Photo
-            </button>
-          }
-          modal
-        >
-          <div>
-            <ViewPhoto id={props.id} alt={props.name} />
-          </div>
-        </Popup>
+        {imgSrc && (
+          <Popup
+            trigger={
+              <button type="button" className="btn">
+                View Photo
+              </button>
+            }
+            modal
+          >
+            <div>
+              <ViewPhoto id={props.id} alt={props.name} />
+            </div>
+          </Popup>
+        )}
+       
         <button
           type="button"
           className="btn btn__danger"
