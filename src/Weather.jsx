@@ -4,23 +4,36 @@ import axios from "axios";
 const WeatherInfo = ({ latitude, longitude }) => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
-  const API_KEY = "0bb5173502f54f5a0f4f4e2dedb2998a";
 
   useEffect(() => {
     async function fetchWeather() {
       try {
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+        // Get the location ID from MetaWeather
+        const locationResponse = await axios.get(
+          `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`
         );
-        setWeather(response.data);
-        setLoading(false);
+
+        if (locationResponse.data && locationResponse.data.length > 0) {
+          const locationId = locationResponse.data[0].woeid;
+
+          // Get the weather data using the location ID
+          const weatherResponse = await axios.get(
+            `https://www.metaweather.com/api/location/${locationId}/`
+          );
+
+          setWeather(weatherResponse.data);
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching weather data: ", error);
         setLoading(false);
       }
     }
+
     fetchWeather();
-  }, [latitude, longitude, API_KEY]);
+  }, [latitude, longitude]);
 
   if (loading) {
     return <span>Loading...</span>;
@@ -30,14 +43,14 @@ const WeatherInfo = ({ latitude, longitude }) => {
     return <span>Error fetching weather data</span>;
   }
 
-  const { main, weather: weatherConditions } = weather;
-  const temperature = main.temp.toFixed(1);
-  const iconCode = weatherConditions[0].icon;
-  const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+  const weatherConditions = weather.consolidated_weather[0];
+  const temperature = weatherConditions.the_temp.toFixed(1);
+  const iconCode = weatherConditions.weather_state_abbr;
+  const iconUrl = `https://www.metaweather.com/static/img/weather/${iconCode}.svg`;
 
   return (
     <>
-      <img src={iconUrl} alt="Weather icon" />
+      <img src={iconUrl} alt="Weather icon" width="40" height="40" />
       <span>{temperature}°C</span>
     </>
   );
