@@ -20,7 +20,7 @@ const WeatherInfo = ({ latitude, longitude }) => {
   }, [latitude, longitude]);
 
   if (!weatherData) {
-    return <div>Loading...</div>;
+    return <div>Loading..1.</div>;
   }
 
   const snow = weatherData.current.snow
