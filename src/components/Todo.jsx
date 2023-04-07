@@ -14,9 +14,12 @@ const WebcamCapture = (props) => {
     setImgSrc(imageSrc);
   };
 
-  const savePhoto = () => {
+  const savePhoto = async () => {
     if (imgSrc) {
-      addPhoto(props.id, imgSrc);
+      // Remove the previous image, if there is any
+      await deletePhoto(props.id);
+      // Add the new photo
+      await addPhoto(props.id, imgSrc);
       props.photoedTask(props.id);
       props.close();
     }
@@ -58,6 +61,7 @@ const WebcamCapture = (props) => {
     </div>
   );
 };
+
 
 const ViewPhoto = (props) => {
   const photoSrc = GetPhotoSrc(props.id);
