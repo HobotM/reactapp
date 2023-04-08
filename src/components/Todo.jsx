@@ -13,6 +13,7 @@ const WebcamCapture = (props) => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   };
+  
 
   const savePhoto = async () => {
     if (imgSrc) {
