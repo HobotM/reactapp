@@ -168,7 +168,8 @@ export default function Todo(props) {
           Closed
         </label>
         <label className="todo-label" htmlFor={props.id}>
-          {props.name} from {props.city} | la {props.latitude} | lo{" "}
+          {props.name} from {props.city}  
+          <br /> | la {props.latitude} | lo{" "}
           {props.longitude}
         </label>
       </div>
