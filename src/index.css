@@ -278,7 +278,6 @@ body {
   height: 7px;
   transform: rotate(-45deg);
   border: none;
-  border-width: 0 0 5px 5px;
   border-top-color: transparent;
   opacity: 0;
   background: transparent;
