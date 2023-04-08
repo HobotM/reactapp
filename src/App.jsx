@@ -178,8 +178,8 @@ function App(props) {
     />
   ));
 
-  const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
-  const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  const tasksNoun = taskList.length !== 1 ? "slopes" : "slope";
+  const headingText = `${taskList.length} ${tasksNoun} added`;
 
   //render
   return (
