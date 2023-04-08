@@ -81,7 +81,7 @@ export default function Todo(props) {
 
   useEffect(() => {
     async function fetchImage() {
-      const image = await GetPhotoSrc(props.id);
+      const image = await usePhotoSrc(props.id);
       setImgSrc(image);
     }
     fetchImage();
