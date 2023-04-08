@@ -184,7 +184,7 @@ export default function Todo(props) {
                 id={props.id}
                 photoedTask={props.photoedTask}
                 close={close}
-                setImgSrc={setImgSrc} // Pass the setImgSrc function as a prop
+                setImgSrc={setImgSrc}
               />
             </div>
           )}
