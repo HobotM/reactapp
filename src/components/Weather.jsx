@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  WiSnow,
-  WiDaySunny,
-  WiCloud,
-  WiCloudy,
-  WiRain,
-  WiThunderstorm,
-} from "react-icons/wi";
+import { WiSnow, WiDaySunny, WiCloud, WiCloudy, WiRain, WiThunderstorm } from "react-icons/wi/index.js";
+
 
 const Weather = ({ latitude, longitude }) => {
   const [temperature, setTemperature] = useState(null);
