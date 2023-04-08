@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi";
-import "./index.css";
-
+import "reactjs-popup/dist/index.css";
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 

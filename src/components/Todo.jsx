@@ -3,7 +3,6 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
 import { db, addPhoto, deletePhoto } from "../db.jsx";
-import Temperature from "./Temperature";
 import Weather from "./Weather";
 
 const WebcamCapture = (props) => {
