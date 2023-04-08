@@ -138,7 +138,7 @@ export default function Todo(props) {
 
   const viewTemplate = (
     <div className="stack-small">
-      <div className="c-cb">
+     
         <input
           id={`${props.id}-open`}
           name={`${props.id}-status`}
@@ -171,7 +171,7 @@ export default function Todo(props) {
           {props.name} from {props.city} | la {props.latitude} | lo{" "}
           {props.longitude}
         </label>
-      </div>
+      
       <div className="btn-group">
         <button type="button" className="btn" onClick={() => setEditing(true)}>
           Edit <span className="visually-hidden">{props.name}</span>
