@@ -138,28 +138,34 @@ export default function Todo(props) {
 
   const viewTemplate = (
     <div className="stack-small">
-    <div className="c-cb">
-      <input
-        id={`${props.id}-open`}
-        type="checkbox"
-        defaultChecked={!props.completed}
-        onChange={() => props.toggleTaskCompleted(props.id, true)}
-      />
-      <label className="todo-label" htmlFor={`${props.id}-open`}>
-        Open
-      </label>
-      <input
-        id={`${props.id}-closed`}
-        type="checkbox"
-        defaultChecked={props.completed}
-        onChange={() => props.toggleTaskCompleted(props.id, false)}
-      />
-      <label className="todo-label" htmlFor={`${props.id}-closed`}>
-        Closed
-      </label>
-        <label className="todo-label" htmlFor={props.id}>
-          {props.name} from {props.city} | la {props.latitude} | lo{" "}
-          {props.longitude}
+      <div className="c-cb">
+        <input
+          id={`${props.id}-open`}
+          name={`${props.id}-status`}
+          type="radio"
+          defaultChecked={!props.completed}
+          onChange={() => {
+            if (props.completed) {
+              props.toggleTaskCompleted(props.id);
+            }
+          }}
+        />
+        <label className="todo-label" htmlFor={`${props.id}-open`}>
+          Open
+        </label>
+        <input
+          id={`${props.id}-closed`}
+          name={`${props.id}-status`}
+          type="radio"
+          defaultChecked={props.completed}
+          onChange={() => {
+            if (!props.completed) {
+              props.toggleTaskCompleted(props.id);
+            }
+          }}
+        />
+        <label className="todo-label" htmlFor={`${props.id}-closed`}>
+          Closed
         </label>
       </div>
       <div className="btn-group">
@@ -185,7 +191,7 @@ export default function Todo(props) {
             </div>
           )}
         </Popup>
-
+  
         {imgSrc && (
           <Popup
             trigger={
@@ -210,6 +216,7 @@ export default function Todo(props) {
       </div>
     </div>
   );
+  
 
   return (
     <li className="todo" onClick={handleToggleDetails}>
