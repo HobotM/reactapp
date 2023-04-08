@@ -3,6 +3,8 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
 import { db, addPhoto, deletePhoto } from "../db.jsx";
+import Temperature from './Temperature';
+
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -172,6 +174,7 @@ export default function Todo(props) {
           <br /> | la {props.latitude} | lo{" "}
           {props.longitude}
         </label>
+        <Temperature latitude={props.latitude} longitude={props.longitude} />
       </div>
       <div className="btn-group">
         <button type="button" className="btn" onClick={() => setEditing(true)}>

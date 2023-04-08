@@ -124,17 +124,30 @@ function App(props) {
     setTasks(editedTaskList);
   }
 
-  function locateTask(id, location) {
+  async function locateTask(id, location) {
+    const apiKey = "your_openweathermap_api_key";
+    const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric`;
+  
+    try {
+      const response = await fetch(weatherURL);
+      const weatherData = await response.json();
+      const temperature = weatherData.main.temp;
+      location.temperature = temperature;
+    } catch (error) {
+      console.error("Failed to fetch temperature data:", error);
+      location.temperature = "N/A";
+    }
+  
     const locatedTaskList = tasks.map((task) => {
-      // if this task has the same ID as the edited task
       if (id === task.id) {
         return { ...task, location: location };
       }
       return task;
     });
+  
     setTasks(locatedTaskList);
   }
-
+  
   function photoedTask(id) {
     const photoedTaskList = tasks.map((task) => {
       if (id === task.id) {
@@ -158,6 +171,7 @@ function App(props) {
         latitude={task.location.latitude}
         longitude={task.location.longitude}
         city={task.location.city}
+        temperature={task.location.temperature}
         toggleTaskCompleted={toggleTaskCompleted}
         photoedTask={photoedTask}
         deleteTask={deleteTask}
@@ -165,6 +179,7 @@ function App(props) {
       />
     </div>
   ));
+
 
 
     
