@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { WiSnow } from "react-icons/wi";
+import {
+  WiSnow,
+  WiDaySunny,
+  WiCloud,
+  WiCloudy,
+  WiRain,
+  WiThunderstorm,
+} from "react-icons/wi";
 
 const Weather = ({ latitude, longitude }) => {
   const [temperature, setTemperature] = useState(null);
-  const [snow, setSnow] = useState(false);
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -13,7 +20,7 @@ const Weather = ({ latitude, longitude }) => {
         .then((response) => response.json())
         .then((data) => {
           setTemperature(data.main.temp);
-          setSnow(data.weather.some((weather) => weather.main === "Snow"));
+          setWeather(data.weather[0].main);
         })
         .catch((error) => {
           console.error("Error fetching weather data:", error);
@@ -21,12 +28,29 @@ const Weather = ({ latitude, longitude }) => {
     }
   }, [latitude, longitude]);
 
+  const renderWeatherIcon = () => {
+    switch (weather) {
+      case "Clear":
+        return <WiDaySunny size="1.5em" color="orange" />;
+      case "Clouds":
+        return <WiCloud size="1.5em" color="gray" />;
+      case "Snow":
+        return <WiSnow size="1.5em" color="blue" />;
+      case "Rain":
+      case "Drizzle":
+        return <WiRain size="1.5em" color="blue" />;
+      case "Thunderstorm":
+        return <WiThunderstorm size="1.5em" color="red" />;
+      default:
+        return <WiCloudy size="1.5em" color="gray" />;
+    }
+  };
+
   return (
     <div>
       {temperature !== null && (
         <span>
-          Temperature: {temperature.toFixed(1)}°C{" "}
-          {snow && <WiSnow size="1.5em" color="blue" />}
+          Temperature: {temperature.toFixed(1)}°C {renderWeatherIcon()}
         </span>
       )}
     </div>

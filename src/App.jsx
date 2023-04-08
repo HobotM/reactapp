@@ -5,6 +5,7 @@ import {deletePhoto, usePhotoSrc} from "./db";
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
+import Weather from "./components/Weather";
 
 
 const FILTER_MAP = {
@@ -106,29 +107,29 @@ function App(props) {
     setTasks(editedTaskList);
   }
 
-  async function locateTask(id, location) {
-    const apiKey = "your_openweathermap_api_key";
-    const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric`;
+  // async function locateTask(id, location) {
+  //   const apiKey = "your_openweathermap_api_key";
+  //   const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric`;
   
-    try {
-      const response = await fetch(weatherURL);
-      const weatherData = await response.json();
-      const temperature = weatherData.main.temp;
-      location.temperature = temperature;
-    } catch (error) {
-      console.error("Failed to fetch temperature data:", error);
-      location.temperature = "N/A";
-    }
+  //   try {
+  //     const response = await fetch(weatherURL);
+  //     const weatherData = await response.json();
+  //     const temperature = weatherData.main.temp;
+  //     location.temperature = temperature;
+  //   } catch (error) {
+  //     console.error("Failed to fetch temperature data:", error);
+  //     location.temperature = "N/A";
+  //   }
   
-    const locatedTaskList = tasks.map((task) => {
-      if (id === task.id) {
-        return { ...task, location: location };
-      }
-      return task;
-    });
+  //   const locatedTaskList = tasks.map((task) => {
+  //     if (id === task.id) {
+  //       return { ...task, location: location };
+  //     }
+  //     return task;
+  //   });
   
-    setTasks(locatedTaskList);
-  }
+  //   setTasks(locatedTaskList);
+  // }
   
   function photoedTask(id) {
     const photoedTaskList = tasks.map((task) => {
@@ -145,6 +146,8 @@ function App(props) {
   .map((task) => (
     <div className="task-box" key={task.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
       <h3>{task.name}</h3>
+      <Weather latitude={task.location.latitude} longitude={task.location.longitude} />
+      <MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />
       <MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />
       <Todo
         id={task.id}
