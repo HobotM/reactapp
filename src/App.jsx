@@ -148,7 +148,6 @@ function App(props) {
       <h3>{task.name}</h3>
       <Weather latitude={task.location.latitude} longitude={task.location.longitude} />
       <MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />
-      <MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />
       <Todo
         id={task.id}
         name={task.name}

@@ -160,7 +160,7 @@ export default function Todo(props) {
           Closed
         </label>
         <label className="todo-label" htmlFor={props.id}>
-          <br /> | la {props.latitude} | lo {props.longitude}
+          <br />{props.name} | la {props.latitude} | lo {props.longitude}
           <br />
           <Weather latitude={props.latitude} longitude={props.longitude} />
         </label>
