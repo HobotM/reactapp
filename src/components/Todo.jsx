@@ -3,8 +3,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
 import { db, addPhoto, deletePhoto } from "../db.jsx";
-import Temperature from './Temperature';
-
+import Temperature from "./Temperature";
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -15,7 +14,6 @@ const WebcamCapture = (props) => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   };
-
 
   const savePhoto = async () => {
     if (imgSrc) {
@@ -91,7 +89,6 @@ export default function Todo(props) {
     };
     fetchImage();
   }, [props.id]);
-  
 
   function handleChange(e) {
     setNewName(e.target.value);
@@ -140,17 +137,13 @@ export default function Todo(props) {
 
   const viewTemplate = (
     <div className="stack-small">
-      <div className="c-cb" >
+      <div className="c-cb">
         <input
           id={`${props.id}-open`}
           name={`${props.id}-status`}
           type="radio"
-          defaultChecked={!props.completed}
-          onChange={() => {
-            if (props.completed) {
-              props.toggleTaskCompleted(props.id);
-            }
-          }}
+          checked={!props.completed}
+          onChange={() => props.toggleTaskCompleted(props.id, true)}
         />
         <label className="todo-label" htmlFor={`${props.id}-open`}>
           Open
@@ -159,20 +152,15 @@ export default function Todo(props) {
           id={`${props.id}-closed`}
           name={`${props.id}-status`}
           type="radio"
-          defaultChecked={props.completed}
-          onChange={() => {
-            if (!props.completed) {
-              props.toggleTaskCompleted(props.id);
-            }
-          }}
+          checked={props.completed}
+          onChange={() => props.toggleTaskCompleted(props.id, false)}
         />
         <label className="todo-label" htmlFor={`${props.id}-closed`}>
           Closed
         </label>
         <label className="todo-label" htmlFor={props.id}>
-          {props.name} from {props.city}  
-          <br /> | la {props.latitude} | lo{" "}
-          {props.longitude}
+          {props.name} from {props.city}
+          <br /> | la {props.latitude} | lo {props.longitude}
         </label>
         <Temperature latitude={props.latitude} longitude={props.longitude} />
       </div>
@@ -225,9 +213,5 @@ export default function Todo(props) {
     </div>
   );
 
-  return (
-    <li className="todo">
-      {isEditing ? editingTemplate : viewTemplate}
-    </li>
-  );
+  return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }
