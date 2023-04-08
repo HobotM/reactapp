@@ -167,6 +167,10 @@ export default function Todo(props) {
         <label className="todo-label" htmlFor={`${props.id}-closed`}>
           Closed
         </label>
+        <label className="todo-label" htmlFor={props.id}>
+          {props.name} from {props.city} | la {props.latitude} | lo{" "}
+          {props.longitude}
+        </label>
       </div>
       <div className="btn-group">
         <button type="button" className="btn" onClick={() => setEditing(true)}>
@@ -191,7 +195,7 @@ export default function Todo(props) {
             </div>
           )}
         </Popup>
-  
+
         {imgSrc && (
           <Popup
             trigger={
@@ -216,21 +220,10 @@ export default function Todo(props) {
       </div>
     </div>
   );
-  
 
   return (
-    <li className="todo" onClick={handleToggleDetails}>
-      {isEditing ? (
-        editingTemplate
-      ) : isExpanded ? (
-        viewTemplate
-      ) : (
-        <div className="c-cb">
-          <label className="todo-label" htmlFor={props.id}>
-            {props.name}
-          </label>
-        </div>
-      )}
+    <li className="todo">
+      {isEditing ? editingTemplate : viewTemplate}
     </li>
   );
 }
