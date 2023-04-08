@@ -17,34 +17,17 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 //App function
 function App(props) {
   //geolocation
-  function geoFindMe() {
+   function geoFindMe() {
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      // Get the city name from the OpenCage Geocoder API
-      fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=49352c6399a04850b1d5a27833bd8fe8&language=en`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          const city = data.results[0].components.city;
-          if (city) {
-            console.log("city found");
-          } else {
-            console.log("city not found");
-          }
-          locateTask(lastInsertedId, {
-            latitude: latitude,
-            longitude: longitude,
-            city: city,
-            error: "",
-            mapLink: "",
-          });
-        })
-        .catch((error) => {
-          console.log("city not found");
-        });
+      locateTask(lastInsertedId, {
+        latitude: latitude,
+        longitude: longitude,
+        error: "",
+        mapLink: "",
+      });
     }
 
     function error() {
@@ -82,7 +65,6 @@ function App(props) {
         latitude: "",
         longitude: "",
         error: "",
-        city: "",
         mapLink: "",
       },
     };
