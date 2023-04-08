@@ -342,3 +342,32 @@ body {
 .hamburger-menu.open .menu {
   transform: translateX(0);
 }
+
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 24px;
+  justify-content: space-around;
+  position: relative;
+  width: 30px;
+}
+
+.hamburger .bar {
+  background-color: #333;
+  border-radius: 2px;
+  height: 3px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+.hamburger-menu.open .hamburger .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.open .hamburger .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open .hamburger .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
