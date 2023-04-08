@@ -38,6 +38,16 @@ function App(props) {
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }
+  
+  function locateTask(id, location) {
+    const updatedTasks = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, location };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
 
   const [tasks, setTasks] = useState(() => {
     const initialValue = localStorage.getItem("todo-items");
