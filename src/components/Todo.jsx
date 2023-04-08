@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Webcam from "react-webcam";
-import { addPhoto, deletePhoto, usePhotoSrc } from "../db.jsx";
+import { db, addPhoto, deletePhoto } from "../db.jsx";
 
 const WebcamCapture = (props) => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -77,15 +77,18 @@ export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
-  const imgSrc = usePhotoSrc(props.id);
+  const [imgSrc, setImgSrc] = useState(null);
 
   useEffect(() => {
-    async function fetchImage() {
-      const image = await usePhotoSrc(props.id);
-      setImgSrc(image);
-    }
+    const fetchImage = async () => {
+      const image = await db.photos.get(props.id);
+      if (image) {
+        setImgSrc(image.imgSrc);
+      }
+    };
     fetchImage();
   }, [props.id]);
+  
 
   function handleChange(e) {
     setNewName(e.target.value);
