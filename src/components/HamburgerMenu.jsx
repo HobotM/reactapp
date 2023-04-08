@@ -9,7 +9,7 @@ const HamburgerMenu = () => {
   };
 
   return (
-    <div className="hamburger-menu">
+    <div className={`hamburger-menu${isOpen ? " open" : ""}`}>
       <button className="hamburger-button" onClick={toggleMenu}>
         <FiMenu size="1.5em" />
       </button>
