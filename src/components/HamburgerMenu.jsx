@@ -19,7 +19,9 @@ const HamburgerMenu = () => {
             <li>
               <a href="/">Home</a>
             </li>
-            {/* Add more menu items here */}
+            <li>
+              <a href="/">About</a>
+            </li>
           </ul>
         </nav>
       )}
