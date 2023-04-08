@@ -19,26 +19,30 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 //App function
 function App(props) {
   //geolocation
-   function geoFindMe() {
+  function geoFindMe() {
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-
+  
       locateTask(lastInsertedId, {
         latitude: latitude,
         longitude: longitude,
         error: ""
       });
     }
-
+  
+    function locationError() {
+      console.log("Unable to retrieve location!");
+    }
+  
     if (!navigator.geolocation) {
       console.log("Geolocation is not supported by your browser");
     } else {
-      console.log("locating");
-      navigator.geolocation.getCurrentPosition(success, error);
+      console.log("Locating");
+      navigator.geolocation.getCurrentPosition(success, locationError);
     }
   }
-  
+
   function locateTask(id, location) {
     const updatedTasks = tasks.map((task) => {
       if (id === task.id) {
