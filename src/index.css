@@ -283,9 +283,7 @@ body {
   opacity: 0;
   background: transparent;
 }
-.c-cb > input[type="checkbox"]:checked + label::after {
-  opacity: 1;
-}
+
 .webcam-preview {
   width: 100%; /* Set the width to 100% of its container */
   object-fit: contain; /* Ensure the video maintains its aspect ratio */
