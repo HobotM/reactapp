@@ -27,8 +27,7 @@ function App(props) {
       locateTask(lastInsertedId, {
         latitude: latitude,
         longitude: longitude,
-        error: "",
-        mapLink: "",
+        error: ""
       });
     }
 
