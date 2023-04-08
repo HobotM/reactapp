@@ -14,6 +14,7 @@ const WebcamCapture = (props) => {
     setImgSrc(imageSrc);
   };
 
+
   const savePhoto = async () => {
     if (imgSrc) {
       // Remove the previous image, if there is any
@@ -88,6 +89,7 @@ export default function Todo(props) {
     };
     fetchImage();
   }, [props.id]);
+  
 
   function handleChange(e) {
     setNewName(e.target.value);
@@ -165,12 +167,10 @@ export default function Todo(props) {
         <label className="todo-label" htmlFor={`${props.id}-closed`}>
           Closed
         </label>
-        <div className="c-cb">
-          <label className="todo-label">
-            {props.name} from {props.city} | la {props.latitude} | lo{" "}
-            {props.longitude}
-          </label>
-        </div>
+        <label className="todo-label" htmlFor={props.id}>
+          {props.name} from {props.city} | la {props.latitude} | lo{" "}
+          {props.longitude}
+        </label>
       </div>
       <div className="btn-group">
         <button type="button" className="btn" onClick={() => setEditing(true)}>
@@ -221,5 +221,9 @@ export default function Todo(props) {
     </div>
   );
 
-  return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
+  return (
+    <li className="todo">
+      {isEditing ? editingTemplate : viewTemplate}
+    </li>
+  );
 }
