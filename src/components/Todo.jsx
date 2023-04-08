@@ -14,6 +14,7 @@ const WebcamCapture = (props) => {
     setImgSrc(imageSrc);
   };
 
+
   const savePhoto = async () => {
     if (imgSrc) {
       // Remove the previous image, if there is any
@@ -88,6 +89,7 @@ export default function Todo(props) {
     };
     fetchImage();
   }, [props.id]);
+  
 
   function handleChange(e) {
     setNewName(e.target.value);
@@ -136,38 +138,40 @@ export default function Todo(props) {
 
   const viewTemplate = (
     <div className="stack-small">
-      <input
-        id={`${props.id}-open`}
-        name={`${props.id}-status`}
-        type="radio"
-        defaultChecked={!props.completed}
-        onChange={() => {
-          if (props.completed) {
-            props.toggleTaskCompleted(props.id);
-          }
-        }}
-      />
-      <label className="todo-label" htmlFor={`${props.id}-open`}>
-        Open
-      </label>
-      <input
-        id={`${props.id}-closed`}
-        name={`${props.id}-status`}
-        type="radio"
-        defaultChecked={props.completed}
-        onChange={() => {
-          if (!props.completed) {
-            props.toggleTaskCompleted(props.id);
-          }
-        }}
-      />
-      <label className="todo-label" htmlFor={`${props.id}-closed`}>
-        Closed
-      </label>
-      <label className="todo-label" htmlFor={props.id}>
-        {props.name} from {props.city} | la {props.latitude} | lo{" "}
-        {props.longitude}
-      </label>
+      <div className="c-cb" >
+        <input
+          id={`${props.id}-open`}
+          name={`${props.id}-status`}
+          type="radio"
+          defaultChecked={!props.completed}
+          onChange={() => {
+            if (props.completed) {
+              props.toggleTaskCompleted(props.id);
+            }
+          }}
+        />
+        <label className="todo-label" htmlFor={`${props.id}-open`}>
+          Open
+        </label>
+        <input
+          id={`${props.id}-closed`}
+          name={`${props.id}-status`}
+          type="radio"
+          defaultChecked={props.completed}
+          onChange={() => {
+            if (!props.completed) {
+              props.toggleTaskCompleted(props.id);
+            }
+          }}
+        />
+        <label className="todo-label" htmlFor={`${props.id}-closed`}>
+          Closed
+        </label>
+        <label className="todo-label" htmlFor={props.id}>
+          {props.name} from {props.city} | la {props.latitude} | lo{" "}
+          {props.longitude}
+        </label>
+      </div>
       <div className="btn-group">
         <button type="button" className="btn" onClick={() => setEditing(true)}>
           Edit <span className="visually-hidden">{props.name}</span>
@@ -217,5 +221,9 @@ export default function Todo(props) {
     </div>
   );
 
-  return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
+  return (
+    <li className="todo">
+      {isEditing ? editingTemplate : viewTemplate}
+    </li>
+  );
 }
