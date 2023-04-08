@@ -9,8 +9,8 @@ import MapboxMap from "./components/MapboxMap";
 
 const FILTER_MAP = {
   All: () => true,
-  Active: (task) => !task.completed,
-  Completed: (task) => task.completed,
+  Open: (task) => !task.completed,
+  Closed: (task) => task.completed,
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
@@ -92,16 +92,14 @@ function App(props) {
 
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map((task) => {
-      // if this task has the same ID as the edited task
       if (id === task.id) {
-        // use object spread to make a new object
-        // whose `completed` prop has been inverted
         return { ...task, completed: !task.completed };
       }
       return task;
     });
     setTasks(updatedTasks);
   }
+  
 
 
   function deleteTask(id) {
