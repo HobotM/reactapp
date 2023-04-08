@@ -31,10 +31,6 @@ function App(props) {
       });
     }
 
-    function error() {
-      console.log("unable to retrive location!");
-    }
-
     if (!navigator.geolocation) {
       console.log("Geolocation is not supported by your browser");
     } else {
