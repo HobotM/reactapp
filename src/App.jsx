@@ -90,15 +90,16 @@ function App(props) {
     setTasks([...tasks, newTask]);
   }
 
-  function toggleTaskCompleted(id) {
+  function toggleTaskCompleted(id, isOpen) {
     const updatedTasks = tasks.map((task) => {
       if (id === task.id) {
-        return { ...task, completed: !task.completed };
+        return { ...task, completed: !isOpen };
       }
       return task;
     });
     setTasks(updatedTasks);
   }
+  
   
 
 

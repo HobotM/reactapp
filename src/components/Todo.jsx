@@ -13,7 +13,7 @@ const WebcamCapture = (props) => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   };
-  
+
 
   const savePhoto = async () => {
     if (imgSrc) {
@@ -138,13 +138,25 @@ export default function Todo(props) {
 
   const viewTemplate = (
     <div className="stack-small">
-      <div className="c-cb">
-        <input
-          id={props.id}
-          type="checkbox"
-          defaultChecked={props.completed}
-          onChange={() => props.toggleTaskCompleted(props.id)}
-        />
+    <div className="c-cb">
+      <input
+        id={`${props.id}-open`}
+        type="checkbox"
+        defaultChecked={!props.completed}
+        onChange={() => props.toggleTaskCompleted(props.id, true)}
+      />
+      <label className="todo-label" htmlFor={`${props.id}-open`}>
+        Open
+      </label>
+      <input
+        id={`${props.id}-closed`}
+        type="checkbox"
+        defaultChecked={props.completed}
+        onChange={() => props.toggleTaskCompleted(props.id, false)}
+      />
+      <label className="todo-label" htmlFor={`${props.id}-closed`}>
+        Closed
+      </label>
         <label className="todo-label" htmlFor={props.id}>
           {props.name} from {props.city} | la {props.latitude} | lo{" "}
           {props.longitude}
