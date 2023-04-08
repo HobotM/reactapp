@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
 import Weather from "./components/Weather";
+import HamburgerMenu from "./components/HamburgerMenu";
 
 
 const FILTER_MAP = {
@@ -106,30 +107,6 @@ function App(props) {
     });
     setTasks(editedTaskList);
   }
-
-  // async function locateTask(id, location) {
-  //   const apiKey = "your_openweathermap_api_key";
-  //   const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric`;
-  
-  //   try {
-  //     const response = await fetch(weatherURL);
-  //     const weatherData = await response.json();
-  //     const temperature = weatherData.main.temp;
-  //     location.temperature = temperature;
-  //   } catch (error) {
-  //     console.error("Failed to fetch temperature data:", error);
-  //     location.temperature = "N/A";
-  //   }
-  
-  //   const locatedTaskList = tasks.map((task) => {
-  //     if (id === task.id) {
-  //       return { ...task, location: location };
-  //     }
-  //     return task;
-  //   });
-  
-  //   setTasks(locatedTaskList);
-  // }
   
   function photoedTask(id) {
     const photoedTaskList = tasks.map((task) => {
@@ -183,6 +160,7 @@ function App(props) {
   return (
     <div className="todoapp stack-large">
       <h1>SlopeSnap</h1>
+      <HamburgerMenu />
       <Form addTask={addTask} geoFindMe={geoFindMe} />
       <div className="filters btn-group stack-exception">{filterList}</div>
       <h2 id="list-heading">{headingText}</h2>
