@@ -61,8 +61,7 @@ function App(props) {
       location: {
         latitude: "",
         longitude: "",
-        error: "",
-        mapLink: "",
+        error: ""
       },
     };
     setLastInsertedId(id);
