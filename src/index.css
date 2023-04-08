@@ -269,8 +269,8 @@ body {
   outline: 3px dashed #228bec;
 }
 .c-cb > label::after {
-  box-sizing: content-box;
-  content: "";
+  /* box-sizing: content-box;
+  content: ""; */
   position: absolute;
   top: 11px;
   left: 9px;
