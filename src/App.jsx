@@ -170,7 +170,6 @@ function App(props) {
         completed={task.completed}
         latitude={task.location.latitude}
         longitude={task.location.longitude}
-        city={task.location.city}
         temperature={task.location.temperature}
         toggleTaskCompleted={toggleTaskCompleted}
         photoedTask={photoedTask}
