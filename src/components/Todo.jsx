@@ -223,17 +223,7 @@ export default function Todo(props) {
 
   return (
     <li className="todo">
-      {isEditing ? (
-        editingTemplate
-      ) : isExpanded ? (
-        viewTemplate
-      ) : (
-        <div className="c-cb">
-          <label className="todo-label" htmlFor={props.id} onClick={handleToggleDetails}>
-            {props.name}
-          </label>
-        </div>
-      )}
+      {isEditing ? editingTemplate : viewTemplate}
     </li>
-  );  
+  );
 }
