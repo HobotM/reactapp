@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import Dexie from 'dexie';
 
+// Initialize the IndexedDB database with the 'todo-photos' name
 export const db = new Dexie('todo-photos');
 db.version(1).stores({
-  photos: 'id',
+  photos: 'id', // Define the 'photos' object store with 'id' as the primary key
 });
 
+// Add a photo to the database
 async function addPhoto(id, imgSrc) {
   try {
     const i = await db.photos.add({
@@ -24,6 +26,7 @@ async function addPhoto(id, imgSrc) {
   );
 }
 
+// Delete a photo from the database using its ID
 async function deletePhoto(id) {
   try {
     await db.photos.delete(id);
@@ -32,9 +35,11 @@ async function deletePhoto(id) {
   }
 }
 
+// Custom hook to get the image source based on the photo ID
 function usePhotoSrc(id) {
   const [imgSrc, setImgSrc] = useState(null);
 
+  // Use useEffect to fetch the photo from the database when the id changes
   useEffect(() => {
     db.photos
       .where('id')
@@ -42,9 +47,9 @@ function usePhotoSrc(id) {
       .toArray()
       .then((imgs) => {
         if (imgs.length > 0) {
-          setImgSrc(imgs[0].imgSrc);
+          setImgSrc(imgs[0].imgSrc); // Set the image source if the photo is found
         } else {
-          setImgSrc(null);
+          setImgSrc(null); // Set the image source to null if no photo is found
         }
       })
       .catch((error) => {
@@ -53,7 +58,7 @@ function usePhotoSrc(id) {
       });
   }, [id]);
 
-  return imgSrc;
+  return imgSrc; // Return the image source
 }
 
 export { addPhoto, deletePhoto, usePhotoSrc };

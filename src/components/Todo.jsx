@@ -10,11 +10,13 @@ const WebcamCapture = (props) => {
   const [facingMode, setFacingMode] = useState("user");
   const webcamRef = useRef(null);
 
+  // Captures a screenshot from the webcam and sets it as the image source
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   };
 
+  // Saves the captured photo to the database and passes the new image source to the parent component
   const savePhoto = async () => {
     if (imgSrc) {
       // Remove the previous image, if there is any
@@ -27,6 +29,7 @@ const WebcamCapture = (props) => {
     }
   };
 
+  // Swaps the camera facing mode between user and environment
   const swapCamera = () => {
     setFacingMode((prev) => (prev === "user" ? "environment" : "user"));
   };
@@ -73,6 +76,7 @@ const ViewPhoto = (props) => {
     </>
   );
 };
+
 
 export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
