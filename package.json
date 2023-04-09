@@ -19,6 +19,7 @@
     "react-icons": "^4.8.0",
     "react-modal": "^3.16.1",
     "react-native-maps": "^1.4.0",
+    "react-router-dom": "^6.10.0",
     "react-webcam": "^7.0.1",
     "reactjs-popup": "^2.0.5"
   },

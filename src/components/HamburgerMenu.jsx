@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import "reactjs-popup/dist/index.css";
-
+import { Link } from "react-router-dom";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
- 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
 
   return (
     <div className={`hamburger-menu${isOpen ? " open" : ""}`}>
@@ -20,12 +18,12 @@ const HamburgerMenu = () => {
       {isOpen && (
         <nav className="menu">
           <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/">About</a>
-            </li>
+            <Link to="/" onClick={toggleMenu}>
+              Home
+            </Link>
+            <Link to="/about" onClick={toggleMenu}>
+              About
+            </Link>
           </ul>
         </nav>
       )}
