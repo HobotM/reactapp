@@ -1,13 +1,23 @@
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
-import {deletePhoto, usePhotoSrc} from "./db";
+import { deletePhoto, usePhotoSrc } from "./db";
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
 import Weather from "./components/Weather";
 import HamburgerMenu from "./components/HamburgerMenu";
+import AboutModal from "./components/AboutModal";
 
+const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+
+function openAboutModal() {
+  setIsAboutModalOpen(true);
+}
+
+function closeAboutModal() {
+  setIsAboutModalOpen(false);
+}
 
 const FILTER_MAP = {
   All: () => true,
@@ -23,18 +33,18 @@ function App(props) {
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-  
+
       locateTask(lastInsertedId, {
         latitude: latitude,
         longitude: longitude,
-        error: ""
+        error: "",
       });
     }
-  
+
     function locationError() {
       console.log("Unable to retrieve location!");
     }
-  
+
     if (!navigator.geolocation) {
       console.log("Geolocation is not supported by your browser");
     } else {
@@ -75,7 +85,7 @@ function App(props) {
       location: {
         latitude: "",
         longitude: "",
-        error: ""
+        error: "",
       },
     };
     setLastInsertedId(id);
@@ -91,18 +101,14 @@ function App(props) {
     });
     setTasks(updatedTasks);
   }
-  
-  
-
 
   function deleteTask(id) {
     const confirmed = window.confirm("Do you want to delete this task?");
     if (confirmed) {
-      setTasks(tasks.filter((task) => id !== task.id ));
+      setTasks(tasks.filter((task) => id !== task.id));
       deletePhoto(id);
-      }
     }
-  
+  }
 
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
@@ -115,7 +121,7 @@ function App(props) {
     });
     setTasks(editedTaskList);
   }
-  
+
   function photoedTask(id) {
     const photoedTaskList = tasks.map((task) => {
       if (id === task.id) {
@@ -126,13 +132,25 @@ function App(props) {
     setTasks(photoedTaskList);
   }
 
-  const taskList = tasks
-  .filter(FILTER_MAP[filter])
-  .map((task) => (
-    <div className="task-box" key={task.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+  const taskList = tasks.filter(FILTER_MAP[filter]).map((task) => (
+    <div
+      className="task-box"
+      key={task.id}
+      style={{
+        border: "1px solid #ccc",
+        padding: "10px",
+        marginBottom: "10px",
+      }}
+    >
       <h3>{task.name}</h3>
-      <Weather latitude={task.location.latitude} longitude={task.location.longitude} />
-      <MapboxMap latitude={task.location.latitude} longitude={task.location.longitude} />
+      <Weather
+        latitude={task.location.latitude}
+        longitude={task.location.longitude}
+      />
+      <MapboxMap
+        latitude={task.location.latitude}
+        longitude={task.location.longitude}
+      />
       <Todo
         id={task.id}
         name={task.name}
@@ -164,6 +182,10 @@ function App(props) {
   return (
     <div className="todoapp stack-large">
       <HamburgerMenu />
+      <button onClick={openAboutModal} style={{ marginLeft: "10px" }}>
+        About
+      </button>
+      <AboutModal isOpen={isAboutModalOpen} closeModal={closeAboutModal} />
       <h1>SlopeSnap</h1>
       <Form addTask={addTask} geoFindMe={geoFindMe} />
       <div className="filters btn-group stack-exception">{filterList}</div>

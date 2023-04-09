@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import "reactjs-popup/dist/index.css";
+import AboutModal from "./AboutModal";
+import "./HamburgerMenu.css";
+
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const openAboutModal = () => {
+    setIsAboutModalOpen(true);
+  };
+
+  const closeAboutModal = () => {
+    setIsAboutModalOpen(false);
   };
 
   return (
@@ -20,11 +32,14 @@ const HamburgerMenu = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/">About</a>
+              <button onClick={openAboutModal} className="menu-link">
+                About
+              </button>
             </li>
           </ul>
         </nav>
       )}
+      <AboutModal isOpen={isAboutModalOpen} closeModal={closeAboutModal} />
     </div>
   );
 };
