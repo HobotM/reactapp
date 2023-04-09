@@ -8,7 +8,8 @@ import MapboxMap from "./components/MapboxMap";
 import Weather from "./components/Weather";
 import HamburgerMenu from "./components/HamburgerMenu";
 import About from "./components/About";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import AboutPage from "./pages/AboutPage";
 
 

@@ -18,12 +18,19 @@ const HamburgerMenu = () => {
       {isOpen && (
         <nav className="menu">
           <ul>
+<<<<<<< HEAD
             <Link to="/" onClick={toggleMenu}>
               Home
             </Link>
             <Link to="/about" onClick={toggleMenu}>
               About
             </Link>
+=======
+            <li>
+              <a href="/">Home</a>
+            </li>
+            {/* Add more menu items here */}
+>>>>>>> parent of f3d3184 (about section)
           </ul>
         </nav>
       )}
