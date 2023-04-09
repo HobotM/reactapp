@@ -7,17 +7,7 @@ import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
 import Weather from "./components/Weather";
 import HamburgerMenu from "./components/HamburgerMenu";
-import AboutModal from "./components/AboutModal";
 
-const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
-
-function openAboutModal() {
-  setIsAboutModalOpen(true);
-}
-
-function closeAboutModal() {
-  setIsAboutModalOpen(false);
-}
 
 const FILTER_MAP = {
   All: () => true,
