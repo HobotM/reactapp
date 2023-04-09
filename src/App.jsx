@@ -7,10 +7,6 @@ import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
 import Weather from "./components/Weather";
 import HamburgerMenu from "./components/HamburgerMenu";
-import About from "./components/About";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-import AboutPage from "./pages/AboutPage";
 
 
 
@@ -175,29 +171,21 @@ function App(props) {
 
   //render
   return (
-    <Router>
-      <div className="todoapp stack-large">
-        <HamburgerMenu />
-        <h1>SlopeSnap</h1>
-        <Switch>
-          <Route exact path="/">
-            <Form addTask={addTask} geoFindMe={geoFindMe} />
-            <div className="filters btn-group stack-exception">{filterList}</div>
-            <h2 id="list-heading">{headingText}</h2>
-            <ul
-              role="list"
-              className="todo-list stack-large stack-exception"
-              aria-labelledby="list-heading"
-            >
-              {taskList}
-            </ul>
-          </Route>
-          <Route path="/about" component={AboutPage} />
-        </Switch>
-      </div>
-    </Router>
+    <div className="todoapp stack-large">
+      <HamburgerMenu />
+      <h1>SlopeSnap</h1>
+      <Form addTask={addTask} geoFindMe={geoFindMe} />
+      <div className="filters btn-group stack-exception">{filterList}</div>
+      <h2 id="list-heading">{headingText}</h2>
+      <ul
+        role="list"
+        className="todo-list stack-large stack-exception"
+        aria-labelledby="list-heading"
+      >
+        {taskList}
+      </ul>
+    </div>
   );
-  
 }
 
 export default App;
