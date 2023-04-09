@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiMenu } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import "reactjs-popup/dist/index.css";
 
 const HamburgerMenu = () => {
@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
   return (
     <div className={`hamburger-menu${isOpen ? " open" : ""}`}>
       <button className="hamburger-button" onClick={toggleMenu}>
-        <FiMenu size="1.5em" />
+        {isOpen ? <FiX size="1.5em" /> : <FiMenu size="1.5em" />}
       </button>
       {isOpen && (
         <nav className="menu">
@@ -31,3 +31,4 @@ const HamburgerMenu = () => {
 };
 
 export default HamburgerMenu;
+
