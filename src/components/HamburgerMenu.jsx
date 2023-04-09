@@ -12,10 +12,13 @@ const HamburgerMenu = () => {
   return (
     <div className={`hamburger-menu${isOpen ? " open" : ""}`}>
       <button className="hamburger-button" onClick={toggleMenu}>
-        {isOpen ? <FiX size="1.5em" /> : <FiMenu size="1.5em" />}
+        <FiMenu size="1.5em" />
       </button>
       {isOpen && (
         <nav className="menu">
+          <button className="close-button" onClick={toggleMenu}>
+            <FiX size="1.5em" />
+          </button>
           <ul>
             <li>
               <a href="/">Home</a>
@@ -31,4 +34,3 @@ const HamburgerMenu = () => {
 };
 
 export default HamburgerMenu;
-
