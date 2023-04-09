@@ -7,6 +7,8 @@ import { nanoid } from "nanoid";
 import MapboxMap from "./components/MapboxMap";
 import Weather from "./components/Weather";
 import HamburgerMenu from "./components/HamburgerMenu";
+import About from "./components/About";
+
 
 
 const FILTER_MAP = {
@@ -172,10 +174,6 @@ function App(props) {
   return (
     <div className="todoapp stack-large">
       <HamburgerMenu />
-      <button onClick={openAboutModal} style={{ marginLeft: "10px" }}>
-        About
-      </button>
-      <AboutModal isOpen={isAboutModalOpen} closeModal={closeAboutModal} />
       <h1>SlopeSnap</h1>
       <Form addTask={addTask} geoFindMe={geoFindMe} />
       <div className="filters btn-group stack-exception">{filterList}</div>
@@ -187,6 +185,7 @@ function App(props) {
       >
         {taskList}
       </ul>
+      <About /> {/* Render the About component */}
     </div>
   );
 }

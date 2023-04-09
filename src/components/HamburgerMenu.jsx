@@ -24,14 +24,11 @@ const HamburgerMenu = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <button onClick={openAboutModal} className="menu-link">
-                About
-              </button>
+              <a href="/">About</a>
             </li>
           </ul>
         </nav>
       )}
-      <AboutModal isOpen={isAboutModalOpen} closeModal={closeAboutModal} />
     </div>
   );
 };
