@@ -1,7 +1,32 @@
-import React, { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+const AboutPopup = ({ onClose }) => (
+  <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={onClose}>
+    {close => (
+      <div className="about-popup">
+        <button className="close" onClick={close}>
+          <FiX size="1.5em" />
+        </button>
+        <h2>About SlopeSnap</h2>
+        <p>
+          With SlopeSnap, users can save the location of the slope in Scotland they are currently on.
+        </p>
+        <p>
+          Key features of SlopeSnap include task management, geolocation, weather information, interactive map, and responsive design. SlopeSnap is the perfect companion for those who love skiing and snowboarding.
+        </p>
+        <ol>
+          <li>Launch SlopeSnap by opening the URL in your web browser.</li>
+          <li>Select a slope from the list and click "Add"</li>
+          <li>View your task in the list of tasks.</li>
+          <li>You will be able to see geolocation - longitude and latitude, and map with the pin</li>
+          <li>To edit a task, click on the "Edit" button and update the name or location.</li>
+          <li>To capture the picture, click "Capture" and then swap the camera if needed.</li>
+          <li>To view a captured photo for the entry, click on the "View Photo" button, capture a new photo to override the current one if needed.</li>
+          <li>To delete a task, click on the "Delete" button, and confirm.</li>
+          <li>To mark a slope as opened or closed , click on the radio button next to "Closed" or "Open".</li>
+          </ol>
+      </div>
+    )}
+  </Popup>
+);
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,29 +34,6 @@ const HamburgerMenu = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  const AboutPopup = () => (
-    <Popup
-      trigger={<a href="#">About</a>}
-      modal
-      closeOnDocumentClick
-    >
-      {(close) => (
-        <div className="about-popup">
-          <button className="close" onClick={close}>
-            <FiX size="1.5em" />
-          </button>
-          <h2>About SlopeSnap</h2>
-          <p>
-            SlopeSnap is a convenient and user-friendly app designed for outdoor enthusiasts who love exploring slopes and mountainous terrains. The app allows users to create and manage tasks related to their adventures, plan their trips effectively, and record their experiences. With SlopeSnap, users can view real-time weather information and visualize their location on an interactive map, ensuring they are well-informed and prepared for their journey.
-          </p>
-          <p>
-            Key features of SlopeSnap include task management, geolocation, weather information, interactive map, and responsive design. SlopeSnap is the perfect companion for those who love exploring the great outdoors and want an organized, informative, and engaging tool to enhance their slope adventures.
-          </p>
-        </div>
-      )}
-    </Popup>
-  );
 
   return (
     <div className={`hamburger-menu${isOpen ? " open" : ""}`}>
@@ -48,7 +50,7 @@ const HamburgerMenu = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <AboutPopup />
+              <AboutPopup onClose={toggleMenu} />
             </li>
           </ul>
         </nav>
@@ -56,5 +58,3 @@ const HamburgerMenu = () => {
     </div>
   );
 };
-
-export default HamburgerMenu;
