@@ -4,16 +4,9 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const AboutPopup = ({ onClose, onMenuClose }) => (
-  <Popup
-    contentStyle={{ zIndex: 9999, overflowY: 'auto', width:"90vw" }}
-    overlayStyle={{ zIndex: 9999 }}
-    trigger={<a href="#" onClick={onMenuClose}>About</a>}
-    modal
-    closeOnDocumentClick
-    onClose={onClose}
-  >
+  <Popup contentStyle={{zIndex: 9999, overflow:"scroll"}} overlayStyle={{ zIndex: 9999, width:"80vw"}}  trigger={<a href="#" onClick={onMenuClose}>About</a>} modal closeOnDocumentClick onClose={onClose}>
     {close => (
-      <div className="about-popup" style={{ overflowY: "scroll" }} >
+      <div className="about-popup" style={{ overflowY: "scroll" }}>
         <button className="close" onClick={close}>
           <FiX size="1.5em" />
         </button>
@@ -22,7 +15,7 @@ const AboutPopup = ({ onClose, onMenuClose }) => (
           With SlopeSnap, users can save the location of the slope in Scotland they are currently on.
         </p>
         <p>
-          Key features of SlopeSnap include task management, image capture, geolocation, weather information, interactive map, and responsive design. SlopeSnap is the perfect companion for those who love skiing and snowboarding.
+          Key features of SlopeSnap include task management, geolocation, weather information, interactive map, and responsive design. SlopeSnap is the perfect companion for those who love skiing and snowboarding.
         </p>
         <ol>
           <li>Launch SlopeSnap by opening the URL in your web browser.</li>
@@ -39,6 +32,7 @@ const AboutPopup = ({ onClose, onMenuClose }) => (
     )}
   </Popup>
 );
+
 
 
 
