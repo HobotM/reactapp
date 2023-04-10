@@ -13,7 +13,7 @@ const AboutPopup = ({ onClose, onMenuClose }) => (
     onClose={onClose}
   >
     {close => (
-      <div className="about-popup">
+      <div className="about-popup" style={{ overflowY: "scroll" }} >
         <button className="close" onClick={close}>
           <FiX size="1.5em" />
         </button>
