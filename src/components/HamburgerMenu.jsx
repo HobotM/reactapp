@@ -27,11 +27,12 @@ const AboutPopup = ({ onClose }) => (
           <li>To view a captured photo for the entry, click on the "View Photo" button, capture a new photo to override the current one if needed.</li>
           <li>To delete a task, click on the "Delete" button, and confirm.</li>
           <li>To mark a slope as opened or closed , click on the radio button next to "Closed" or "Open".</li>
-        </ol>
+          </ol>
       </div>
     )}
   </Popup>
 );
+
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +56,8 @@ const HamburgerMenu = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <AboutPopup onClose={toggleMenu} />
+            <AboutPopup onClose={toggleMenu} />
+
             </li>
           </ul>
         </nav>
