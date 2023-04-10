@@ -3,9 +3,9 @@ import { FiMenu, FiX } from "react-icons/fi";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-const AboutPopup = () => (
-  <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={toggleMenu}>
-    {(close) => (
+const AboutPopup = ({ onClose }) => (
+  <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={onClose}>
+    {close => (
       <div className="about-popup">
         <button className="close" onClick={close}>
           <FiX size="1.5em" />
@@ -32,7 +32,6 @@ const AboutPopup = () => (
     )}
   </Popup>
 );
-
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
