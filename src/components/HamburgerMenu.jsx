@@ -36,6 +36,10 @@ const AboutPopup = ({ onClose }) => (
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -55,7 +59,7 @@ const HamburgerMenu = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <AboutPopup onClose={toggleMenu} />
+              <AboutPopup onClose={closeMenu} />
             </li>
           </ul>
         </nav>
