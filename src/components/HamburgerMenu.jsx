@@ -1,3 +1,8 @@
+import React, { useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
 const AboutPopup = ({ onClose }) => (
   <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={onClose}>
     {close => (
