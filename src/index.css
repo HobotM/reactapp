@@ -396,3 +396,9 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
 }
+
+
+.about-popup {
+  max-height: 70vh;
+  overflow-y: auto;
+}
