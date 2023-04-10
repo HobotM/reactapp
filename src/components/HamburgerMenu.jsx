@@ -4,9 +4,16 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const AboutPopup = ({ onClose, onMenuClose }) => (
-  <Popup contentStyle={{zIndex: 9999, overflow:"scroll"}} overlayStyle={{ zIndex: 9999, width:"80vw"}}  trigger={<a href="#" onClick={onMenuClose}>About</a>} modal closeOnDocumentClick onClose={onClose}>
+  <Popup
+    contentStyle={{ zIndex: 9999, overflowY: 'scroll', width:"90vw" }}
+    overlayStyle={{ zIndex: 9999 }}
+    trigger={<a href="#" onClick={onMenuClose}>About</a>}
+    modal
+    closeOnDocumentClick
+    onClose={onClose}
+  >
     {close => (
-      <div className="about-popup" style={{ overflowY: "scroll" }}>
+      <div className="about-popup" style={{ overflowY: "scroll" }} >
         <button className="close" onClick={close}>
           <FiX size="1.5em" />
         </button>
@@ -32,7 +39,6 @@ const AboutPopup = ({ onClose, onMenuClose }) => (
     )}
   </Popup>
 );
-
 
 
 
