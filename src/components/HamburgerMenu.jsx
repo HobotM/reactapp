@@ -3,9 +3,9 @@ import { FiMenu, FiX } from "react-icons/fi";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-const AboutPopup = ({ onClose }) => (
-  <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={onClose}>
-    {close => (
+const AboutPopup = () => (
+  <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={toggleMenu}>
+    {(close) => (
       <div className="about-popup">
         <button className="close" onClick={close}>
           <FiX size="1.5em" />
@@ -27,11 +27,12 @@ const AboutPopup = ({ onClose }) => (
           <li>To view a captured photo for the entry, click on the "View Photo" button, capture a new photo to override the current one if needed.</li>
           <li>To delete a task, click on the "Delete" button, and confirm.</li>
           <li>To mark a slope as opened or closed , click on the radio button next to "Closed" or "Open".</li>
-          </ol>
+        </ol>
       </div>
     )}
   </Popup>
 );
+
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
