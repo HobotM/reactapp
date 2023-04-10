@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const AboutPopup = ({ onClose, onMenuClose }) => (
-  <Popup contentStyle={{ width: "80%", maxWidth: "500px" }}
+  <Popup contentStyle={{ width: "90vw" }}
   overlayStyle={{ zIndex: 9999 }}  trigger={<a href="#" onClick={onMenuClose}>About</a>} modal closeOnDocumentClick onClose={onClose}>
     {close => (
       <div className="about-popup">
