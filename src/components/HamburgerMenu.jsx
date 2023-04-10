@@ -4,10 +4,18 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const AboutPopup = ({ onClose }) => (
-  <Popup trigger={<a href="#">About</a>} modal closeOnDocumentClick onClose={onClose}>
-    {close => (
+  <Popup
+    trigger={<a href="#">About</a>}
+    modal
+    closeOnDocumentClick
+    onClose={onClose} // call the onClose prop when the popup is closed
+  >
+    {(close) => (
       <div className="about-popup">
-        <button className="close" onClick={close}>
+        <button className="close" onClick={() => {
+          close();
+          onClose(); // close the menu after the popup is closed
+        }}>
           <FiX size="1.5em" />
         </button>
         <h2>About SlopeSnap</h2>
@@ -27,11 +35,12 @@ const AboutPopup = ({ onClose }) => (
           <li>To view a captured photo for the entry, click on the "View Photo" button, capture a new photo to override the current one if needed.</li>
           <li>To delete a task, click on the "Delete" button, and confirm.</li>
           <li>To mark a slope as opened or closed , click on the radio button next to "Closed" or "Open".</li>
-          </ol>
+        </ol>
       </div>
     )}
   </Popup>
 );
+
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +68,8 @@ const HamburgerMenu = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <AboutPopup onClose={closeMenu} />
+            <AboutPopup onClose={toggleMenu} />
+
             </li>
           </ul>
         </nav>
