@@ -58,3 +58,5 @@ const HamburgerMenu = () => {
     </div>
   );
 };
+
+export default HamburgerMenu;
