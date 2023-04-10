@@ -23,7 +23,7 @@ const AboutPopup = ({ onClose }) => (
           With SlopeSnap, users can save the location of the slope in Scotland they are currently on.
         </p>
         <p>
-          Key features of SlopeSnap include task management, geolocation, weather information, interactive map, and responsive design. SlopeSnap is the perfect companion for those who love skiing and snowboarding.
+          Key features of SlopeSnap include task management,image capturing, geolocation, weather information, interactive map, and responsive design. SlopeSnap is the perfect companion for those who love skiing and snowboarding.
         </p>
         <ol>
           <li>Launch SlopeSnap by opening the URL in your web browser.</li>
